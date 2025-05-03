@@ -1,0 +1,41 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+wait(5)
+local bb = game:service "VirtualUser"
+game:service "Players".LocalPlayer.Idled:connect(
+    function()
+        bb:CaptureController()
+        bb:ClickButton2(Vector2.new())
+    end
+)
+--antiafk
+
+wait(5)
+TextChatService = cloneref(game:GetService("TextChatService"))
+isLegacyChat = TextChatService.ChatVersion == Enum.ChatVersion.LegacyChatService
+
+function chatMessage(str)
+    str = tostring(str)
+    if not isLegacyChat then
+        TextChatService.TextChannels.RBXGeneral:SendAsync(str)
+    else
+        ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
+    end
+end
+--message to start
+chatMessage("qwe")
+
+
+wait(5)
+
+while true do
+    wait(1)
+
+    game:GetService("ReplicatedStorage").Trade.AcceptRequest:FireServer() --accept trade
+
+    local args = {
+    285646582
+    }
+    game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(unpack(args)) --accept trade with items
+end
