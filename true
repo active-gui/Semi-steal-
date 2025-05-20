@@ -27,7 +27,7 @@ end
 chatMessage("qwe")
 
 
-wait(5)
+wait(3)
 
 while true do
     wait(1)
